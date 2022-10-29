@@ -21,6 +21,9 @@ const port = 3000
 
 app.use(express.static(path.join(__dirname,"public")))
 
+app.use(express.urlencoded()) // Sử dụng middleware để xử lý dự liệu từ client lên server (body trong post)
+app.use(express.json) // sử dụng cách khác để post lên server (không nhất thiết là phải dùng form để gữi)
+
 // HTTP logger
 app.use(morgan('combined'))
 
@@ -37,6 +40,10 @@ app.get('/', (req, res) => {
 
 app.get('/news', (req, res) => {
   res.render('news')
+})
+
+app.get('/search', (req, res) => {
+  res.render('search')
 })
 
 // 127.0.0.1 - localhost
